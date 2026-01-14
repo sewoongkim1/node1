@@ -7,10 +7,10 @@
   
   <ul> 
     <% for (comment of comments) { %>
-      <li><%= comment.comment %></li>
+      <li><%= comment %></li>
     <% } %>
     </ul>
-  <h2><%= comments.comment %></h2>
+  <h2><%= comments %></h2>
   <form action="/create" method="post">
     <input type="text" name="comment"><br><br>
     <input type="submit" value="Submit">

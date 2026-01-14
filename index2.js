@@ -12,19 +12,7 @@ const sequelize = new Sequelize({
 });
 
 
-const User = sequelize.define(
-  'comments',
-  {
-    comment: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-);
-
-// `sequelize.define` also returns the model
-await comments.sync();
-console.log('The table for the User model was just (re)created!');
+let comments = [];
 
 app.use(cors())
 
@@ -32,6 +20,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.set('view engine', 'ejs') 
+
+app.get('/',async function(req, res){
+    
+    res.render('index', { comments: comments});
+})
 
 app.post('/create', (req, res) => {
   console.log(req.body)
