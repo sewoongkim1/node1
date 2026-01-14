@@ -3,15 +3,6 @@ import cors from 'cors'
 
 const app = express()
 
-import { Sequelize, DataTypes } from 'sequelize';
-
-//const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: 'database.sqlite'
-});
-
-
 let comments = [];
 
 app.use(cors())
