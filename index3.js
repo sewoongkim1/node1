@@ -11,6 +11,14 @@ const sequelize = new Sequelize({
   storage: 'database.sqlite'
 });
 
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('SQLite 연결 성공');
+  } catch (err) {
+    console.error('연결 실패:', err);
+  }
+})();
 
 const comments = sequelize.define(
   'commentbls',
