@@ -31,8 +31,10 @@ const comments = sequelize.define(
 );
 
 // `sequelize.define` also returns the model
-await comments.sync();
-console.log('The table for the User model was just (re)created!');
+(async () =>{
+  await comments.sync();
+  console.log('The table for the User model was just (re)created!');
+});
 
 app.use(cors())
 
