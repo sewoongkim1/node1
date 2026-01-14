@@ -6,9 +6,12 @@ const app = express()
 import { Sequelize, DataTypes } from 'sequelize';
 
 //const { Sequelize, DataTypes } = require('sequelize');
+
+const dbPath = process.env.SQLITE_PATH || "./database.sqlite";
+
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: 'database.sqlite'
+  storage:  dbPath,
 });
 
 (async () => {
