@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h1> 댓글목록</h1>
+  
+  <ul> 
+    <% for (comment of comments) { %>
+      <li>
+        <%= comment.comment %>
+        <form action="/update/<%= comment.id %>" method="post">
+          <input type="hidden" name="id" value="<%= comment.id %>">
+          <input type="text" name="comment" value="">
+          <input type="submit" value="Update">          
+        </form>
+        <form action="/delete/<%= comment.id %>" method="post">
+          <input type="submit" value="delete">          
+        </form>
+
+      </li>
+
+    <% } %>
+    </ul>
+  <form action="/create" method="post">
+    <input type="text" name="comment"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
