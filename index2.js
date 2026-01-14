@@ -1,0 +1,80 @@
+import express from 'express'
+import cors from 'cors'
+
+const app = express()
+
+import { Sequelize, DataTypes } from 'sequelize';
+
+//const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'database.sqlite'
+});
+
+
+const User = sequelize.define(
+  'comments',
+  {
+    comment: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+);
+
+// `sequelize.define` also returns the model
+await comments.sync();
+console.log('The table for the User model was just (re)created!');
+
+app.use(cors())
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.set('view engine', 'ejs') 
+
+app.post('/create', (req, res) => {
+  console.log(req.body)
+  const { comment } = req.body;
+  comments.push(comment);
+  console.log(comments);
+  res.redirect('/');
+})
+
+
+app.post('/delete', (req, res) => {
+  const { comment } = req.body;
+  comments.pop(comment);
+  console.log(comments);
+  res.redirect('/');
+})
+
+app.post('/update', (req, res) => {
+  const { comment } = req.body;
+  comments.pop(comment);
+  console.log(comments);
+  res.redirect('/');
+})
+
+
+app.get('/user/:id', (req, res) => {
+    const q = req.query
+    console.log(q)
+    console.log(q.a)
+    console.log(q.b)
+    res.send(q)
+
+})
+
+
+app.get('/dog', (req, res) => {
+  res.send({'sound':'멍멍'})
+})
+
+app.get('/cat', (req, res) => {
+  res.send({'sound':'야옹'})
+})
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000')
+})
